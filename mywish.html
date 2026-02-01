@@ -4,27 +4,67 @@
   <title>My Wish</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    body {
+      font-family: 'Trebuchet MS', sans-serif;
+      text-align: center;
+      margin: 0;
+      background: linear-gradient(to bottom, #fff8f0, #ffe5d9);
+    }
+
+    h2 {
+      margin-top: 30px;
+      color: #444;
+    }
+
+    .wish-message {
+      background: #fff;
+      display: inline-block;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      font-size: 18px;
+      color: #444;
+      line-height: 1.6;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
     /* Confetti styling */
     .confetti {
       position: fixed;
-      width: 10px;
-      height: 10px;
-      background-color: red;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
       top: -10px;
       animation: fall 3s linear forwards;
     }
 
     @keyframes fall {
       to {
-        transform: translateY(100vh) rotate(360deg);
+        transform: translateY(100vh) translateX(20px) rotate(360deg);
         opacity: 0;
       }
     }
   </style>
 </head>
 <body>
-  <h2>💌 My Special Wish</h2>
-  <p>Dear Dad, you are my hero and guide. Wishing you endless happiness today and always!</p>
+  <h1>💌 My Special Wish 💌</h1> 
+  <br>
+  <h3 class="wish-message">
+   Happy Birthday Dadyy <br> ENJOYYYYYY 🎂
+  </h3>
 
   <a href="index.html">⬅ Back to Home</a>
 
@@ -40,6 +80,11 @@
         confetti.style.left = Math.random() * window.innerWidth + "px";
         confetti.style.backgroundColor =
           ["#e74c3c","#f1c40f","#2ecc71","#3498db","#9b59b6"][Math.floor(Math.random()*5)];
+
+        // Random size
+        let size = Math.random() * 6 + 6; // between 6px and 12px
+        confetti.style.width = size + "px";
+        confetti.style.height = size + "px";
 
         // Random animation duration
         confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
