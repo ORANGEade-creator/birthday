@@ -6,20 +6,13 @@
 </head>
 <body>
   <h2>👥 Wishes Received</h2>
-  <ul id="wishList"></ul>
+
+  <!-- Google Sheet Embed -->
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfkh7GobrguG0YFJHFsU4XxQjnHzNePI632ns58TNb-1LzRDw/viewform?embedded=true
+" 
+          width="640" height="800">
+  </iframe>
+
   <a href="index.html">⬅ Back to Home</a>
-
-  <script>
-    const wishList = document.getElementById("wishList");
-
-    window.onload = () => {
-      let wishes = JSON.parse(localStorage.getItem("wishes")) || [];
-      wishes.forEach(w => {
-        const li = document.createElement("li");
-        li.textContent = `${w.name}: ${w.wish}`;
-        wishList.appendChild(li);
-      });
-    };
-  </script>
 </body>
 </html>
