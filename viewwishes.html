@@ -3,17 +3,81 @@
 <head>
   <title>View Wishes</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    h2 {
+      margin-top: 20px;
+      color: #333;
+    }
+    .wish-board {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px;
+    }
+    .wish-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      width: 250px;
+      margin: 10px;
+      padding: 15px;
+      text-align: left;
+      transition: transform 0.2s;
+    }
+    .wish-card:hover {
+      transform: scale(1.05);
+    }
+    .wish-card h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #007BFF;
+    }
+    .wish-card p {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #555;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007BFF;
+    }
+  </style>
 </head>
 <body>
-  <h2>👥 Wishes Received</h2>
+  <h2>🎉 Wishes Received 🎉</h2>
+  <div class="wish-board" id="wishBoard"></div>
 
-  <!-- Google Sheet Embed -->
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRnW72iCpWvGqEHMaXgPRLTEDR5FlfKyafI-gWsl85gXJLo-_tCig9vhXhFj4l15DUwzajFq0YBxLMt/pubhtml?gid=513019336&amp;single=true&amp;widget=true&amp;headers=false" width="90%" height ="600" frameborder="0"></iframe> 
   <a href="index.html">⬅ Back to Home</a>
+
+  <script>
+    // Replace with your published Display tab CSV link
+    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRnW72iCpWvGqEHMaXgPRLTEDR5FlfKyafI-gWsl85gXJLo-_tCig9vhXhFj4l15DUwzajFq0YBxLMt/pub?output=csv
+?gid=513019336&amp;single=true&amp;widget=true&amp;headers=false";
+
+    fetch(sheetURL)
+      .then(response => response.text())
+      .then(data => {
+        const rows = data.split("\n").slice(1); // skip header row
+        const board = document.getElementById("wishBoard");
+
+        rows.forEach(row => {
+          const [name, wish] = row.split(",");
+          if (name && wish) {
+            const card = document.createElement("div");
+            card.className = "wish-card";
+            card.innerHTML = `<h3>${name}</h3><p>${wish}</p>`;
+            board.appendChild(card);
+          }
+        });
+      });
+  </script>
 </body>
 </html>
-
-
-
-
-
