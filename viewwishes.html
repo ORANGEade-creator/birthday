@@ -49,31 +49,32 @@
   <div class="wish-board" id="wishBoard"></div>
 
   <script>
-    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRnW72iCpWvGqEHMaXgPRLTEDR5FlfKyafI-gWsl85gXJLo-_tCig9vhXhFj4l15DUwzajFq0YBxLMt/pub?gid=513019336&single=true&output=csv";
+  const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRnW72iCpWvGqEHMaXgPRLTEDR5FlfKyafI-gWsl85gXJLo-_tCig9vhXhFj4l15DUwzajFq0YBxLMt/pub?gid=513019336&single=true&output=csv";
 
-    fetch(sheetURL)
-      .then(response => response.text())
-      .then(data => {
-        const rows = data.split("\n").slice(1); // skip header row
-        const board = document.getElementById("wishBoard");
+  fetch(sheetURL)
+    .then(response => response.text())
+    .then(data => {
+      const rows = data.split("\n").slice(1); // skip header row
+      const board = document.getElementById("wishBoard");
 
-        rows.forEach(row => {
-          const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); // safe split
-          const name = cols[0]?.replace(/"/g, "").trim();
-          const wish = cols[1]?.replace(/"/g, "").trim();
+      rows.forEach(row => {
+        const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); // safe split
+        const name = cols[0]?.replace(/"/g, "").trim();
+        const message = cols[1]?.replace(/"/g, "").trim();
 
-          if (name && wish) {
-            const card = document.createElement("div");
-            card.className = "wish-card";
-            card.innerHTML = `<h3>${name}</h3><p>${wish}</p>`;
-            board.appendChild(card);
-          }
-        });
-      })
-      .catch(err => console.error("Error loading sheet:", err));
-  </script>
+        if (name && message) {
+          const card = document.createElement("div");
+          card.className = "wish-card";
+          card.innerHTML = `<h3>${name}</h3><p>${message}</p>`;
+          board.appendChild(card);
+        }
+      });
+    })
+    .catch(err => console.error("Error loading sheet:", err));
+</script>
 </body>
 </html>
+
 
 
 
