@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Wishes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>👥 Wishes Received</h2>
+  <ul id="wishList"></ul>
+  <a href="index.html">⬅ Back to Home</a>
+
+  <script>
+    const wishList = document.getElementById("wishList");
+
+    window.onload = () => {
+      let wishes = JSON.parse(localStorage.getItem("wishes")) || [];
+      wishes.forEach(w => {
+        const li = document.createElement("li");
+        li.textContent = `${w.name}: ${w.wish}`;
+        wishList.appendChild(li);
+      });
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guest Wishes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>💬 Leave Your Wishes</h2>
+  <form id="wishForm">
+    <label>Your Name:</label><br>
+    <input type="text" id="name"><br>
+    <label>Your Wish:</label><br>
+    <textarea id="wish"></textarea><br>
+    <button type="submit">Send</button>
+  </form>
+
+  <a href="index.html">⬅ Back to Home</a>
+
+  <script>
+    const form = document.getElementById("wishForm");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const wish = document.getElementById("wish").value;
+
+      let wishes = JSON.parse(localStorage.getItem("wishes")) || [];
+      wishes.push({name, wish});
+      localStorage.setItem("wishes", JSON.stringify(wishes));
+
+      alert("✅ Wish submitted!");
+      form.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Wish</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Confetti styling */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      top: -10px;
+      animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>💌 My Special Wish</h2>
+  <p>Dear Dad, you are my hero and guide. Wishing you endless happiness today and always!</p>
+
+  <a href="index.html">⬅ Back to Home</a>
+
+  <script>
+    // Function to start confetti automatically when page loads
+    function startConfetti() {
+      for (let i = 0; i < 100; i++) {
+        let confetti = document.createElement("div");
+        confetti.className = "confetti";
+        document.body.appendChild(confetti);
+
+        // Random position and color
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.backgroundColor =
+          ["#e74c3c","#f1c40f","#2ecc71","#3498db","#9b59b6"][Math.floor(Math.random()*5)];
+
+        // Random animation duration
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+        // Remove after animation
+        setTimeout(() => { confetti.remove(); }, 5000);
+      }
+    }
+
+    // Trigger confetti when page loads
+    window.onload = startConfetti;
+  </script>
+</body>
+</html>
